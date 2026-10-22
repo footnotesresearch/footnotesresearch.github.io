@@ -1,5 +1,5 @@
 ---
-status: publish
+status: published
 title: HDFC Bank — the chairman's exit, the audit trail and the post-merger funding path
 company: hdfc-bank
 date: 2026-10-22
