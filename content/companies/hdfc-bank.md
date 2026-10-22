@@ -1,5 +1,5 @@
 ---
-status: draft
+status: published
 name: HDFC Bank Ltd
 nse_symbol: HDFCBANK
 bse_code: "500180"
