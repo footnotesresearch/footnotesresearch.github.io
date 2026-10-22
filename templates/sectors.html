@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import draft_flag %}
+{% block title %}Sectors | {{ site.name }}{% endblock %}
+{% block main %}
+<header class="page-head">
+  <h1>Sectors</h1>
+  <p class="lede">Companies are grouped by NSE's industry classification and by AMFI's market-cap tiers. We start with small caps; mid and large caps join over time.</p>
+</header>
+{% for s in sectors %}
+<section class="block sector-block" id="{{ s.slug }}">
+  <h2><a href="{{ url('/sectors/' ~ s.slug ~ '/') }}">{{ s.name }}</a></h2>
+  <p class="muted">{{ s.note }}</p>
+  {% if s.companies %}
+  <ul class="company-list">
+    {% for c in s.companies %}
+    <li><a href="{{ url(c.url) }}">{{ c.name }}</a> {{ draft_flag(c) }} <span class="muted">{{ c | tier }}</span></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No companies published in this sector yet.</p>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}

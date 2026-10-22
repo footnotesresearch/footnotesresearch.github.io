@@ -1,0 +1,29 @@
+{% macro draft_flag(item) %}{% if item.draft %}<span class="draft-flag">Draft</span>{% endif %}{% endmacro %}
+
+{% macro filing_row(r, show_company=true) %}
+<li class="filing">
+  <time class="filing-date" datetime="{{ r.date | iso }}">{{ r.date | nicedate }}</time>
+  <div class="filing-body">
+    <h3 class="filing-title"><a href="{{ url(r.url) }}">{{ r.title }}</a> {{ draft_flag(r) }}</h3>
+    {% if show_company %}
+    <p class="filing-meta"><a href="{{ url(r.company_info.url) }}">{{ r.company_info.name }}</a>, {{ r.company_info.sector_info.name }}, {{ r.company_info | tier }}</p>
+    {% endif %}
+    <p class="filing-summary">{{ r.summary | trim }}</p>
+  </div>
+</li>
+{% endmacro %}
+
+{% macro notes(sources, heading="Notes") %}
+{% if sources %}
+<section class="notes" aria-labelledby="notes-h">
+  <h2 id="notes-h">{{ heading }}</h2>
+  <ol>
+  {% for s in sources %}
+    <li id="note-{{ s.id }}" value="{{ s.id }}">
+      {% if s.url and not s.url.startswith('[') %}<a href="{{ s.url }}">{{ s.label }}</a>{% else %}{{ s.label }}{% if s.url %} <span class="muted">{{ s.url }}</span>{% endif %}{% endif %}
+    </li>
+  {% endfor %}
+  </ol>
+</section>
+{% endif %}
+{% endmacro %}

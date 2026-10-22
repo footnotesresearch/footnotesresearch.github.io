@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% from "_macros.html" import draft_flag, filing_row, notes %}
+{% block title %}{{ c.name }} | {{ site.name }}{% endblock %}
+{% block description %}{{ c.summary | trim }}{% endblock %}
+{% block alternate %}<link rel="alternate" type="text/markdown" title="Plain-text version" href="{{ url(c.md_url) }}">{% endblock %}
+{% block main %}
+<article class="company">
+  <header class="page-head">
+    <p class="crumb"><a href="{{ url('/sectors/' ~ c.sector ~ '/') }}">{{ c.sector_info.name }}</a>, {{ c | tier }}</p>
+    <h1>{{ c.name }} {{ draft_flag(c) }}</h1>
+    <p class="lede">{{ c.summary | trim }}</p>
+    <dl class="facts">
+      {% if c.nse_symbol %}<div><dt>NSE</dt><dd>{{ c.nse_symbol }}</dd></div>{% endif %}
+      {% if c.bse_code %}<div><dt>BSE</dt><dd>{{ c.bse_code }}</dd></div>{% endif %}
+      {% if c.last_updated %}<div><dt>Last updated</dt><dd><time datetime="{{ c.last_updated | iso }}">{{ c.last_updated | nicedate }}</time></dd></div>{% endif %}
+      <div><dt>Author's position</dt><dd>{{ c.author_position }}</dd></div>
+    </dl>
+  </header>
+
+  {% if c.takeaways %}
+  <section class="takeaways" aria-labelledby="take-h">
+    <div class="section-head">
+      <h2 id="take-h">What has happened so far</h2>
+      {% if c.takeaways_as_of %}<p class="muted">As of <time datetime="{{ c.takeaways_as_of | iso }}">{{ c.takeaways_as_of | nicedate }}</time>. Facts from the filings; no view on the share.</p>{% endif %}
+    </div>
+    {% set src = {} %}{% for s in c.sources %}{% set _ = src.update({s.id: s}) %}{% endfor %}
+    <ul class="takeaway-list">
+      {% for t in c.takeaways %}
+      <li class="takeaway">
+        <div class="takeaway-text">
+          {% if t.topic %}<p class="topic">{{ t.topic }}</p>{% endif %}
+          <p>{{ t.text }}{% for sid in t.sources %}<sup class="ref"><a href="#note-{{ sid }}" aria-label="Source {{ sid }}">{{ sid }}</a></sup>{% endfor %}</p>
+        </div>
+        <aside class="sidenote" aria-hidden="true">
+          {% for sid in t.sources %}{% if src[sid] %}<span><sup>{{ sid }}</sup> {{ src[sid].label }}</span>{% endif %}{% endfor %}
+        </aside>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if c.body_html %}
+  <section class="block prose" aria-labelledby="about-h">
+    <h2 id="about-h">About the business</h2>
+    {{ c.body_html | safe }}
+  </section>
+  {% endif %}
+
+  <section class="block" aria-labelledby="reports-h">
+    <h2 id="reports-h">Reports</h2>
+    {% if c.reports %}
+    <ol class="filings">{% for r in c.reports %}{{ filing_row(r, show_company=false) }}{% endfor %}</ol>
+    {% else %}
+    <p class="empty">No full reports on this company yet.</p>
+    {% endif %}
+  </section>
+
+  {% if c.data_files %}
+  <section class="block" aria-labelledby="data-h">
+    <h2 id="data-h">Data</h2>
+    <ul class="downloads">
+      {% for d in c.data_files %}<li><a href="{{ url(d.url) }}" download>{{ d.label }}</a> <span class="muted">CSV</span></li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {{ notes(c.sources) }}
+
+  <p class="alt-version">Plain-text version of this page: <a href="{{ url(c.md_url) }}">{{ c.slug }}.md</a></p>
+</article>
+{% endblock %}

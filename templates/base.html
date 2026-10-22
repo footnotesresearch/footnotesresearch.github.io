@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="{{ site.language or 'en' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.name }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site.description | trim }}{% endblock %}">
+<meta name="author" content="{{ site.author }}">
+{% if preview %}<meta name="robots" content="noindex">{% endif %}
+<link rel="canonical" href="{{ abs_url(page_path) }}">
+<link rel="icon" href="{{ url('/static/favicon.svg') }}" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="{{ site.name }}: new reports" href="{{ url('/feed.xml') }}">
+{% block alternate %}{% endblock %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="{{ url('/static/style.css') }}">
+{% if jsonld is defined %}<script type="application/ld+json">{{ jsonld | jsonld | safe }}</script>{% endif %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{% if preview %}
+<div class="preview-bar" role="note">Preview build. Pages marked draft are not on the public site.</div>
+{% endif %}
+<header class="masthead">
+  <a class="wordmark" href="{{ url('/') }}">{{ site.name }}<sup aria-hidden="true">1</sup></a>
+  <nav aria-label="Main">
+    <a href="{{ url('/sectors/') }}"{% if page_path.startswith('/sectors') %} aria-current="page"{% endif %}>Sectors</a>
+    <a href="{{ url('/archive/') }}"{% if page_path == '/archive/' %} aria-current="page"{% endif %}>Archive</a>
+    <a href="{{ url('/about/') }}"{% if page_path == '/about/' %} aria-current="page"{% endif %}>About</a>
+  </nav>
+</header>
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+<footer class="colophon">
+  <p class="disclaimer"><sup aria-hidden="true">1</sup> {{ site.disclaimer | trim }}</p>
+  <p class="machine">
+    For AI tools and data use: <a href="{{ url('/llms.txt') }}">llms.txt</a>,
+    <a href="{{ url('/reports.json') }}">reports.json</a>,
+    <a href="{{ url('/feed.xml') }}">feed</a>.
+    Change history: <a href="{{ site.repo_url }}">public repository</a>.
+  </p>
+</footer>
+</body>
+</html>

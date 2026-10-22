@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "_macros.html" import draft_flag %}
+{% block title %}{{ sector.name }} | {{ site.name }}{% endblock %}
+{% block description %}Forensic research on Indian listed companies in {{ sector.name }}: {{ sector.note }}{% endblock %}
+{% block main %}
+<header class="page-head">
+  <p class="crumb"><a href="{{ url('/sectors/') }}">Sectors</a></p>
+  <h1>{{ sector.name }}</h1>
+  <p class="lede">{{ sector.note }}</p>
+</header>
+{% set tiers = [("small", "Small cap"), ("mid", "Mid cap"), ("large", "Large cap")] %}
+{% set ns = namespace(any=false) %}
+{% for key, label in tiers %}
+  {% set group = sector.companies | selectattr("tier_key", "equalto", key) | list %}
+  {% if group %}{% set ns.any = true %}
+  <section class="block">
+    <h2>{{ label }}</h2>
+    <ul class="company-cards">
+      {% for c in group %}
+      <li>
+        <h3><a href="{{ url(c.url) }}">{{ c.name }}</a> {{ draft_flag(c) }}</h3>
+        <p>{{ c.summary | trim }}</p>
+        {% if c.last_updated %}<p class="muted">Updated {{ c.last_updated | nicedate }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+{% endfor %}
+{% set unclassified = sector.companies | rejectattr("tier_key", "in", ["small", "mid", "large"]) | list %}
+{% if unclassified %}{% set ns.any = true %}
+<section class="block">
+  <h2>Tier not yet confirmed</h2>
+  <ul class="company-cards">
+    {% for c in unclassified %}
+    <li>
+      <h3><a href="{{ url(c.url) }}">{{ c.name }}</a> {{ draft_flag(c) }}</h3>
+      <p>{{ c.summary | trim }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% if not ns.any %}
+<p class="empty">No companies published in this sector yet.</p>
+{% endif %}
+{% endblock %}

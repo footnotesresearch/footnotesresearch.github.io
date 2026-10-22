@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ p.title }} | {{ site.name }}{% endblock %}
+{% block alternate %}<link rel="alternate" type="text/markdown" href="{{ url(p.md_url) }}">{% endblock %}
+{% block main %}
+<article>
+  <header class="page-head"><h1>{{ p.title }}</h1></header>
+  <div class="prose">{{ p.body_html | safe }}</div>
+</article>
+{% endblock %}

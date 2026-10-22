@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "_macros.html" import filing_row %}
+{% block main %}
+<section class="intro">
+  <h1>{{ site.tagline }}</h1>
+  <p class="lede">We read annual reports, earnings calls and exchange filings, check the arithmetic, and publish what we find with a date and a source for every figure. No buy or sell calls.</p>
+</section>
+
+<section class="block" aria-labelledby="latest-h">
+  <h2 id="latest-h">Latest filings</h2>
+  {% if reports %}
+  <ol class="filings">
+    {% for r in reports %}{{ filing_row(r) }}{% endfor %}
+  </ol>
+  <p class="more"><a href="{{ url('/archive/') }}">Full archive</a></p>
+  {% else %}
+  <p class="empty">Nothing is published yet. The first reports are being checked against their filings and will appear here with their dates.</p>
+  {% endif %}
+</section>
+
+<section class="block" aria-labelledby="sectors-h">
+  <h2 id="sectors-h">Sectors covered</h2>
+  <ul class="sector-index">
+    {% for s in sectors %}
+    <li>
+      <a href="{{ url('/sectors/' ~ s.slug ~ '/') }}">{{ s.name }}</a>
+      <span class="count">{% if s.companies %}{{ s.companies | length }} {{ 'company' if s.companies | length == 1 else 'companies' }}{% else %}Coverage starting soon{% endif %}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

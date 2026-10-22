@@ -1,0 +1,77 @@
+metric,period,value,unit,source_document,page
+Deposits,FY23,1883394.65,Rs crore,Annual Report FY26,238-239
+Deposits,FY24,2379786.28,Rs crore,Annual Report FY26,238-239
+Deposits,FY25,2714714.90,Rs crore,Annual Report FY26,238-239
+Deposits,FY26,3105250.47,Rs crore,Annual Report FY26,238-239
+Loans,FY23,1600585.90,Rs crore,Annual Report FY26,238-239
+Loans,FY24,2484861.52,Rs crore,Annual Report FY26,238-239
+Loans,FY25,2619608.62,Rs crore,Annual Report FY26,238-239
+Loans,FY26,2937166.27,Rs crore,Annual Report FY26,238-239
+Working funds (total assets),FY23,2466081.47,Rs crore,Annual Report FY26,238-239
+Working funds (total assets),FY24,3617623.09,Rs crore,Annual Report FY26,238-239
+Working funds (total assets),FY25,3910198.94,Rs crore,Annual Report FY26,238-239
+Working funds (total assets),FY26,4364886.33,Rs crore,Annual Report FY26,238-239
+Profit after tax,FY23,44108.71,Rs crore,Annual Report FY26,238-239
+Profit after tax,FY24,60812.28,Rs crore,Annual Report FY26,238-239
+Profit after tax,FY25,67347.36,Rs crore,Annual Report FY26,238-239
+Profit after tax,FY26,74671.30,Rs crore,Annual Report FY26,238-239
+Profit before tax,FY24,70895.31,Rs crore,Annual Report FY26,238-239
+Provision for taxation,FY24,10083.03,Rs crore,Annual Report FY26,238-239
+Profit before tax,FY25,88478.06,Rs crore,Annual Report FY26,238-239
+Provision for taxation,FY25,21130.70,Rs crore,Annual Report FY26,238-239
+Profit before tax,FY26,95168.70,Rs crore,Annual Report FY26,238-239
+Provision for taxation,FY26,20497.40,Rs crore,Annual Report FY26,238-239
+Return on equity,FY23,17.39,%,Annual Report FY26,238-239
+Return on equity,FY24,16.09,%,Annual Report FY26,238-239
+Return on equity,FY25,14.56,%,Annual Report FY26,238-239
+Return on equity,FY26,14.29,%,Annual Report FY26,238-239
+Market price per share at 31 March (bonus-adjusted),FY25,914.10,Rs,Annual Report FY26,238-239
+Market price per share at 31 March (bonus-adjusted),FY26,731.55,Rs,Annual Report FY26,238-239
+Price to earnings ratio,FY25,20.71,x,Annual Report FY26,238-239
+Price to earnings ratio,FY26,15.05,x,Annual Report FY26,238-239
+Borrowings,FY23,206765.57,Rs crore,Annual Report FY24,290
+Borrowings,FY24,662153.08,Rs crore,Annual Report FY25,320
+Borrowings,FY25,547930.89,Rs crore,Annual Report FY26,358
+Borrowings,FY26,489394.64,Rs crore,Annual Report FY26,358
+Erstwhile HDFC Ltd borrowings outstanding,FY24,401140,Rs crore,Annual Report FY24,221
+Erstwhile HDFC Ltd borrowings outstanding,FY25,287923,Rs crore,Annual Report FY25,216
+Erstwhile HDFC Ltd borrowings outstanding,FY26,225019.44,Rs crore,Annual Report FY26,260
+Net interest income as % of working funds,FY23,4.08,%,Annual Report FY24,371
+Net interest income as % of working funds,FY24,3.53,%,Annual Report FY25,404
+Net interest income as % of working funds,FY25,3.48,%,Annual Report FY26,440
+Net interest income as % of working funds,FY26,3.34,%,Annual Report FY26,440
+Return on assets (average),FY23,2.07,%,Annual Report FY24,371
+Return on assets (average),FY24,1.98,%,Annual Report FY25,404
+Return on assets (average),FY25,1.91,%,Annual Report FY26,440
+Return on assets (average),FY26,1.94,%,Annual Report FY26,440
+Cost of deposits,FY24,4.87,%,Annual Report FY25,404
+Cost of deposits,FY25,5.21,%,Annual Report FY26,440
+Cost of deposits,FY26,5.05,%,Annual Report FY26,440
+CASA share of deposits,FY24,38.20,%,Annual Report FY24,221
+CASA share of deposits,FY25,34.80,%,Annual Report FY25,215
+CASA share of deposits,FY26,34.10,%,Annual Report FY26,260
+Time deposits growth,FY24,40.40,%,Annual Report FY24,221
+Time deposits growth,FY25,20.30,%,Annual Report FY25,215
+Time deposits growth,FY26,15.50,%,Annual Report FY26,260
+Savings deposits growth,FY24,6.40,%,Annual Report FY24,221
+Savings deposits growth,FY25,5.30,%,Annual Report FY25,215
+Savings deposits growth,FY26,11.90,%,Annual Report FY26,260
+Gross NPA ratio,FY24,1.24,%,Annual Report FY24,221
+Gross NPA ratio,FY25,1.33,%,Annual Report FY25,215
+Gross NPA ratio,FY26,1.15,%,Annual Report FY26,259
+Specific provision coverage excl. write-offs,FY24,74.00,%,Annual Report FY24,221
+Specific provision coverage excl. write-offs,FY25,67.90,%,Annual Report FY25,215
+Specific provision coverage excl. write-offs,FY26,67.20,%,Annual Report FY26,259
+Gross NPA amount,FY26,34061.19,Rs crore,Annual Report FY26,350
+Gain on sale of HDFC Credila stake,FY24,7341.42,Rs crore,Annual Report FY24,376
+Floating provision created,FY24,10900.00,Rs crore,Annual Report FY24,221
+Gain on sale of HDB Financial Services shares (OFS),FY26,9179.40,Rs crore,Annual Report FY26,444
+Floating provision created,FY26,9000.00,Rs crore,Annual Report FY26,259
+Floating provision balance,FY25,12351.28,Rs crore,Annual Report FY26,405
+Floating provision balance,FY26,21351.28,Rs crore,Annual Report FY26,405
+Income tax provision written back,FY24,6325.04,Rs crore,Annual Report FY24,372
+Labour code incremental employee cost (estimate),FY26,800.00,Rs crore,Annual Report FY26,448
+Marketing and distribution commission income,FY25,1629.86,Rs crore,Annual Report FY26,440
+Marketing and distribution commission income,FY26,1266.58,Rs crore,Annual Report FY26,440
+Board meetings held,FY25,14,count,Annual Report FY25,246
+Board meetings held,FY26,21,count,Annual Report FY26,289

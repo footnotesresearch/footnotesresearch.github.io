@@ -1,0 +1,23 @@
+# Sectors follow NSE's industry classification (the "macro-economic sector" level).
+# To add a sector later, copy a block and give it a new slug.
+# Market-cap tiers follow AMFI's half-yearly list: large, mid, small.
+
+- slug: energy
+  name: Energy
+  note: Oil, gas, power generation and related services.
+
+- slug: healthcare
+  name: Healthcare
+  note: Pharmaceuticals, hospitals, diagnostics and medical devices.
+
+- slug: financial-services
+  name: Financial Services
+  note: Banks, NBFCs, insurers, brokers and capital-market firms.
+
+- slug: chemicals
+  name: Chemicals
+  note: Speciality, commodity and agricultural chemicals.
+
+- slug: automobiles
+  name: Automobile and Auto Components
+  note: Vehicle makers and the companies that supply them.

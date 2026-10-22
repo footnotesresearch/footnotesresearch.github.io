@@ -1,0 +1,264 @@
+/* Footnote — site styles.
+   Idea: the page reads like a well-kept set of notes to accounts.
+   Every finding carries its source in the margin, the way a footnote would. */
+
+:root {
+  --paper: #f5f7f6;      /* cool ledger paper */
+  --ink: #1a2531;        /* blue-black ink */
+  --graphite: #56626f;   /* secondary text */
+  --rule: #cad4d1;       /* ledger rule */
+  --filing: #23509b;     /* filing blue: links and note markers */
+  --note-bg: #e8eef6;
+  --draft-ink: #7d4b00;
+  --draft-bg: #fdefcf;
+
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --measure: 40rem;
+  --margin-col: 15rem;
+  --gutter: 2.5rem;
+  --page: calc(var(--measure) + var(--gutter) + var(--margin-col));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11171d;
+    --ink: #e2e7ec;
+    --graphite: #9aa6b3;
+    --rule: #2a3540;
+    --filing: #8fb3ef;
+    --note-bg: #1a2431;
+    --draft-ink: #f3c879;
+    --draft-bg: #3a2c12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11171d; --ink: #e2e7ec; --graphite: #9aa6b3; --rule: #2a3540;
+  --filing: #8fb3ef; --note-bg: #1a2431; --draft-ink: #f3c879; --draft-bg: #3a2c12;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.65 var(--serif);
+  font-optical-sizing: auto;
+  font-variant-numeric: lining-nums;
+}
+
+a { color: var(--filing); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--filing); outline-offset: 3px; border-radius: 2px; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--paper); padding: .5rem .75rem; z-index: 10; }
+
+.muted { color: var(--graphite); }
+
+/* ---------- frame */
+
+.masthead, main, .colophon {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 40rem) {
+  .masthead, main, .colophon { padding-left: 2rem; padding-right: 2rem; }
+}
+
+.preview-bar {
+  background: var(--draft-bg); color: var(--draft-ink);
+  font: 500 .875rem/1.4 var(--sans);
+  padding: .5rem 1rem; text-align: center;
+}
+
+.masthead {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: .75rem 2rem;
+  padding-top: 1.5rem; padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+.wordmark {
+  font: 600 1.5rem/1 var(--serif);
+  color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+}
+.wordmark sup, .disclaimer > sup {
+  color: var(--filing); font: 600 .6em/1 var(--sans); margin-left: .08em; vertical-align: super;
+}
+.masthead nav { display: flex; gap: 1.5rem; font: 500 .9375rem/1 var(--sans); }
+.masthead nav a { color: var(--graphite); text-decoration: none; padding: .25rem 0; }
+.masthead nav a:hover, .masthead nav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--filing); }
+
+main { padding-top: 2.5rem; padding-bottom: 4rem; }
+
+/* ---------- type */
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; letter-spacing: -0.012em; margin: 0; }
+h1 { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem); max-width: 22ch; }
+h2 { font-size: 1.375rem; margin-bottom: 1rem; }
+h3 { font-size: 1.125rem; }
+p { margin: 0 0 1rem; }
+
+.lede { font-size: 1.1875rem; line-height: 1.55; color: var(--graphite); max-width: var(--measure); margin-top: 1rem; }
+
+.intro { padding: 1rem 0 2.5rem; }
+.intro h1 {
+  font-size: clamp(2rem, 1.2rem + 3.6vw, 3.4rem);
+  font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; max-width: 18ch;
+}
+.intro .lede { max-width: 36rem; }
+
+.page-head { padding-bottom: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--rule); max-width: var(--page); }
+.crumb { font: 500 .9375rem/1.4 var(--sans); color: var(--graphite); margin-bottom: .75rem; }
+.crumb a { color: var(--graphite); }
+
+.block { margin-top: 3rem; max-width: var(--measure); }
+.more { font: 500 .9375rem/1 var(--sans); margin-top: 1.5rem; }
+.empty { color: var(--graphite); font-style: italic; }
+
+.draft-flag {
+  display: inline-block; vertical-align: middle;
+  font: 600 .75rem/1 var(--sans); color: var(--draft-ink); background: var(--draft-bg);
+  padding: .3rem .5rem; border-radius: 3px; margin-left: .35rem; letter-spacing: .02em;
+}
+h1 .draft-flag { font-size: .875rem; }
+
+/* ---------- facts row */
+
+.facts {
+  display: flex; flex-wrap: wrap; gap: 1rem 2.25rem; margin: 1.5rem 0 0;
+  font: 400 .9375rem/1.35 var(--sans);
+}
+.facts div { min-width: 0; }
+.facts dt { color: var(--graphite); font-size: .8125rem; margin-bottom: .2rem; }
+.facts dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+
+/* ---------- filings list: the date is the record */
+
+.filings { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.filing {
+  display: grid; grid-template-columns: 1fr; gap: .35rem;
+  padding: 1.25rem 0; border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 40rem) {
+  .filing { grid-template-columns: 7.5rem 1fr; gap: 1.5rem; }
+}
+.filing-date { font: 500 .9375rem/1.6 var(--sans); color: var(--graphite); font-variant-numeric: tabular-nums; }
+.filing-title { font-size: 1.1875rem; font-weight: 500; line-height: 1.3; }
+.filing-title a { color: var(--ink); text-decoration: none; }
+.filing-title a:hover { color: var(--filing); text-decoration: underline; }
+.filing-meta { font: 400 .875rem/1.4 var(--sans); color: var(--graphite); margin: .35rem 0 .5rem; }
+.filing-meta a { color: inherit; }
+.filing-summary { margin: 0; }
+
+/* ---------- sector index */
+
+.sector-index { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); }
+.sector-index li {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: .85rem 0; border-bottom: 1px solid var(--rule);
+}
+.sector-index a { font-size: 1.125rem; }
+.count { font: 400 .875rem/1.3 var(--sans); color: var(--graphite); text-align: right; }
+
+.sector-block h2 { margin-bottom: .35rem; }
+.sector-block h2 a { color: var(--ink); text-decoration: none; }
+.sector-block h2 a:hover { color: var(--filing); }
+.company-list { padding-left: 1.1rem; margin: 0; }
+.company-list li { margin: .35rem 0; }
+.company-list .muted { font: 400 .875rem var(--sans); margin-left: .35rem; }
+
+.company-cards { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.company-cards li { padding: 1.1rem 0; border-bottom: 1px solid var(--rule); }
+.company-cards h3 { margin-bottom: .4rem; }
+.company-cards p { margin: 0 0 .25rem; }
+.company-cards .muted { font: 400 .875rem var(--sans); }
+
+/* ---------- takeaways with sources in the margin */
+
+.takeaways { margin-top: 1rem; }
+.section-head { max-width: var(--measure); margin-bottom: 1.25rem; }
+.section-head h2 { margin-bottom: .4rem; }
+.section-head .muted { font: 400 .9375rem/1.45 var(--sans); margin: 0; }
+
+.takeaway-list { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.takeaway {
+  display: grid; grid-template-columns: minmax(0, var(--measure)); gap: .5rem;
+  padding: 1.1rem 0; border-top: 1px solid var(--rule);
+}
+.takeaway:last-child { border-bottom: 1px solid var(--rule); }
+.takeaway-text p { margin: 0; }
+.topic { font: 600 .8125rem/1.3 var(--sans); color: var(--graphite); margin-bottom: .3rem !important; }
+
+.ref { font: 600 .7rem/0 var(--sans); margin-left: .12em; }
+.ref a { text-decoration: none; }
+.ref + .ref::before { content: ","; color: var(--graphite); }
+
+.sidenote { display: none; }
+
+@media (min-width: 62rem) {
+  .takeaway {
+    grid-template-columns: minmax(0, var(--measure)) var(--margin-col);
+    column-gap: var(--gutter);
+  }
+  .sidenote {
+    display: flex; flex-direction: column; gap: .4rem;
+    font: 400 .8125rem/1.4 var(--sans); color: var(--graphite);
+    border-left: 2px solid var(--note-bg); padding-left: .85rem; align-self: start;
+    margin-top: 1.45rem;
+  }
+  .sidenote sup { color: var(--filing); font-weight: 600; font-size: .75em; }
+}
+
+/* ---------- notes (sources) */
+
+.notes { margin-top: 3rem; max-width: var(--measure); padding-top: 1.5rem; border-top: 2px solid var(--ink); }
+.notes h2 { font-size: 1.0625rem; font-family: var(--sans); font-weight: 600; }
+.notes ol { margin: 0; padding-left: 1.75rem; font: 400 .9375rem/1.5 var(--sans); }
+.notes li { margin: .4rem 0; padding-left: .25rem; }
+.notes li::marker { color: var(--filing); font-weight: 600; font-variant-numeric: tabular-nums; }
+.notes li:target { background: var(--note-bg); border-radius: 2px; }
+.notes .muted { word-break: break-word; }
+
+.downloads { padding-left: 1.1rem; margin: 0; }
+.downloads .muted { font: 400 .8125rem var(--sans); margin-left: .35rem; }
+
+.alt-version { margin-top: 2rem; font: 400 .875rem/1.5 var(--sans); color: var(--graphite); max-width: var(--measure); }
+
+/* ---------- long-form prose */
+
+.prose { max-width: var(--measure); }
+.prose h2 { margin-top: 2.5rem; }
+.prose h3 { margin-top: 2rem; margin-bottom: .6rem; }
+.prose ul, .prose ol { padding-left: 1.3rem; margin: 0 0 1rem; }
+.prose li { margin: .3rem 0; }
+.prose blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 2px solid var(--rule); color: var(--graphite); }
+.prose code { font-size: .9em; background: var(--note-bg); padding: .1em .3em; border-radius: 3px; }
+
+.prose table {
+  width: 100%; border-collapse: collapse; margin: 1.5rem 0;
+  font: 400 .9rem/1.4 var(--sans); font-variant-numeric: tabular-nums;
+  display: block; overflow-x: auto;
+}
+.prose th, .prose td { text-align: left; padding: .55rem .75rem .55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.prose th { font-weight: 600; border-bottom-color: var(--ink); white-space: nowrap; }
+
+/* ---------- footer */
+
+.colophon { padding-top: 2rem; padding-bottom: 3rem; border-top: 1px solid var(--rule); }
+.colophon p { max-width: var(--measure); font: 400 .8125rem/1.6 var(--sans); color: var(--graphite); margin: 0 0 .75rem; }
+.colophon a { color: var(--graphite); }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+@media print {
+  .masthead nav, .preview-bar, .skip { display: none; }
+  body { background: #fff; color: #000; }
+  .sidenote { display: none !important; }
+}

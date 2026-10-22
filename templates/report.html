@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import draft_flag, notes %}
+{% block title %}{{ r.title }} | {{ site.name }}{% endblock %}
+{% block description %}{{ r.summary | trim }}{% endblock %}
+{% block alternate %}<link rel="alternate" type="text/markdown" title="Plain-text version" href="{{ url(r.md_url) }}">{% endblock %}
+{% block main %}
+<article class="report">
+  <header class="page-head">
+    <p class="crumb"><a href="{{ url(c.url) }}">{{ c.name }}</a>, {{ c.sector_info.name }}</p>
+    <h1>{{ r.title }} {{ draft_flag(r) }}</h1>
+    <dl class="facts">
+      <div><dt>Published</dt><dd><time datetime="{{ r.date | iso }}">{{ r.date | nicedate }}</time></dd></div>
+      {% if r.updated %}<div><dt>Updated</dt><dd><time datetime="{{ r.updated | iso }}">{{ r.updated | nicedate }}</time></dd></div>{% endif %}
+      <div><dt>Author</dt><dd>{{ site.author }}</dd></div>
+      <div><dt>Author's position</dt><dd>{{ c.author_position }}</dd></div>
+    </dl>
+    <p class="lede">{{ r.summary | trim }}</p>
+  </header>
+  <div class="prose">
+    {{ r.body_html | safe }}
+  </div>
+  {{ notes(r.sources, "Sources") }}
+  <p class="alt-version">
+    Plain-text version: <a href="{{ url(r.md_url) }}">{{ r.slug }}.md</a>.
+    Proof of date: <a href="{{ r.history_url }}">this file's public change history</a>.
+  </p>
+</article>
+{% endblock %}
